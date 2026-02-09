@@ -1,4 +1,28 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -50,6 +74,58 @@
   --color-border: hsl(216 34% 17%);
   --color-input: hsl(216 34% 17%);
   --color-ring: hsl(216 34% 17%);
+}
+
+/* ── Effects Keyframes ── */
+@property --border-beam-angle {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --shine-angle {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes border-beam-spin {
+  from {
+    --border-beam-angle: 0;
+  }
+  to {
+    --border-beam-angle: 360;
+  }
+}
+
+@keyframes shine-border-spin {
+  from {
+    --shine-angle: 0;
+  }
+  to {
+    --shine-angle: 360;
+  }
+}
+
+@keyframes meteor-fall {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(600px) translateX(-200px);
+    opacity: 0;
+  }
+}
+
+.ds-meteor {
+  animation: meteor-fall linear infinite;
 }
 
 @layer base {
